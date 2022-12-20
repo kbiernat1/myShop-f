@@ -35,6 +35,7 @@ export class AdminProductUpdateComponent implements OnInit {
       description: ['', [Validators.required, Validators.minLength(4)]],
       price: ['', [Validators.required, Validators.min(0)]],
       currency: ['PLN', [Validators.required, Validators.maxLength(3)]],
+      slug: ['', [Validators.required, Validators.minLength(4)]]
     });
     this.imageForm = this.formBuilder.group({
       file: ['']
@@ -55,6 +56,7 @@ export class AdminProductUpdateComponent implements OnInit {
       description: this.productForm.get('description')?.value,
       price: this.productForm.get('price')?.value,
       currency: this.productForm.get('currency')?.value,
+      slug: this.productForm.get('slug')?.value,
       img: this.img
     } as AdminProductUpdate).subscribe({
       next: product => {
@@ -87,6 +89,7 @@ export class AdminProductUpdateComponent implements OnInit {
       description: product.description,
       price: product.price,
       currency: product.currency,
+      slug: product.slug
     });
     this.img = product.img;
   }
