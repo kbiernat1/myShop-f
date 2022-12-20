@@ -27,7 +27,6 @@ export class AdminProductAddComponent implements OnInit {
       name: ['', [Validators.required, Validators.minLength(4)]],
       category: ['', [Validators.required, Validators.minLength(4)]],
       description: ['', [Validators.required, Validators.minLength(4)]],
-      img: ['/assets/bez.jpg', [Validators.required, Validators.minLength(4)]],
       price: ['', [Validators.required, Validators.min(0)]],
       currency: ['PLN', [Validators.required, Validators.maxLength(3)]]
     });

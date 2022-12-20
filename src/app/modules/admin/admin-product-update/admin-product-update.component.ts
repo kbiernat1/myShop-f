@@ -15,6 +15,9 @@ export class AdminProductUpdateComponent implements OnInit {
 
   product!: AdminProductUpdate;
   productForm!: FormGroup;
+  requiredFileTypes = "image/jpeg, image/png";
+  imageForm!: FormGroup;
+  img: string | null = null;
 
   constructor(
     private router: ActivatedRoute,
@@ -30,10 +33,12 @@ export class AdminProductUpdateComponent implements OnInit {
       name: ['', [Validators.required, Validators.minLength(4)]],
       category: ['', [Validators.required, Validators.minLength(4)]],
       description: ['', [Validators.required, Validators.minLength(4)]],
-      img: ['/assets/bez.jpg', [Validators.required, Validators.minLength(4)]],
       price: ['', [Validators.required, Validators.min(0)]],
-      currency: ['PLN', [Validators.required, Validators.maxLength(3)]]
+      currency: ['PLN', [Validators.required, Validators.maxLength(3)]],
     });
+    this.imageForm = this.formBuilder.group({
+      file: ['']
+    })
   }
 
   getProduct() {
@@ -50,6 +55,7 @@ export class AdminProductUpdateComponent implements OnInit {
       description: this.productForm.get('description')?.value,
       price: this.productForm.get('price')?.value,
       currency: this.productForm.get('currency')?.value,
+      img: this.img
     } as AdminProductUpdate).subscribe({
       next: product => {
         this.mapFormValues(product);
@@ -59,13 +65,29 @@ export class AdminProductUpdateComponent implements OnInit {
     });
   }
 
+  uploadFile() {
+    let formData = new FormData();
+    formData.append('file', this.imageForm.get('file')?.value);
+    this.adminProductUpdateService.uploadImage(formData)
+    .subscribe(result => this.img = result.fileName);
+  }
+
+  onFileChange(event: any) {
+    if (event.target.files.length > 0) {
+      this.imageForm.patchValue({
+        file: event.target.files[0]
+      });
+    }
+  }
+
   private mapFormValues(product: AdminProductUpdate): void {
-    return this.productForm.setValue({
+    this.productForm.setValue({
       name: product.name,
       category: product.category,
       description: product.description,
       price: product.price,
-      currency: product.currency
+      currency: product.currency,
     });
+    this.img = product.img;
   }
 }
