@@ -58,6 +58,11 @@ import { FormGroup } from "@angular/forms";
         </mat-form-field>
 
         <mat-form-field appearance="fill">
+            <mat-label>Pełny opis</mat-label>
+            <textarea matInput rows="40" placeholder="Podaj pełny opis produktu" formControlName="fullDescription"></textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
             <mat-label>cena</mat-label>
             <input matInput placeholder="podaj cenę produktu" formControlName="price">
             <div *ngIf="price?.invalid && (price?.dirty || price?.touched)" class="errorMessages">
@@ -107,6 +112,9 @@ export class AdminProductFormComponent implements OnInit {
     }
     get description() {
         return this.parentForm.get("description");
+    }
+    get fullDescription(){
+        return this.parentForm.get("fullDescription");
     }
     get price() {
         return this.parentForm.get("price");
