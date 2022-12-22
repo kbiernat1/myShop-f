@@ -31,7 +31,7 @@ export class AdminProductAddComponent implements OnInit {
   ngOnInit(): void {
     this.productForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(4)]],
-      category: ['', [Validators.required, Validators.minLength(4)]],
+      categoryId: ['', [Validators.required]],
       description: ['', [Validators.required, Validators.minLength(4)]],
       fullDescription: [''],
       price: ['', [Validators.required, Validators.min(0)]],
@@ -48,7 +48,7 @@ export class AdminProductAddComponent implements OnInit {
       name: this.productForm.get('name')?.value,
       description: this.productForm.get('description')?.value,
       fullDescription: this.productForm.get('fullDescription')?.value,
-      category: this.productForm.get('category')?.value,
+      categoryId: this.productForm.get('categoryId')?.value,
       price: this.productForm.get('price')?.value,
       currency: this.productForm.get('currency')?.value,
       slug: this.productForm.get('slug')?.value,

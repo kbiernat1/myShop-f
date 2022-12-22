@@ -31,7 +31,7 @@ export class AdminProductUpdateComponent implements OnInit {
 
     this.productForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(4)]],
-      category: ['', [Validators.required, Validators.minLength(4)]],
+      categoryId: ['', [Validators.required]],
       description: ['', [Validators.required, Validators.minLength(4)]],
       fullDescription: [''],
       price: ['', [Validators.required, Validators.min(0)]],
@@ -53,7 +53,7 @@ export class AdminProductUpdateComponent implements OnInit {
     let id = Number(this.router.snapshot.params['id']);
     this.adminProductUpdateService.savePost(id, {
       name: this.productForm.get('name')?.value,
-      category: this.productForm.get('category')?.value,
+      categoryId: this.productForm.get('categoryId')?.value,
       description: this.productForm.get('description')?.value,
       fullDescription: this.productForm.get('fullDescription')?.value,
       price: this.productForm.get('price')?.value,
@@ -87,7 +87,7 @@ export class AdminProductUpdateComponent implements OnInit {
   private mapFormValues(product: AdminProductUpdate): void {
     this.productForm.setValue({
       name: product.name,
-      category: product.category,
+      categoryId: product.categoryId,
       description: product.description,
       fullDescription: product.fullDescription,
       price: product.price,

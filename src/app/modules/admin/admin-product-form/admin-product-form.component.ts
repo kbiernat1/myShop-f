@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { FormGroup } from "@angular/forms";
+import { AdminCategoryNameDto } from "./adminCategoryNameDto";
+import { FormCategoryService } from "./form-category.service";
 
 @Component({
     selector: 'app-admin-product-form',
@@ -32,16 +34,15 @@ import { FormGroup } from "@angular/forms";
         </mat-form-field>
     
         <mat-form-field appearance="fill">
-            <mat-label>kategoria</mat-label>
-            <input matInput placeholder="podaj kategorię produktu" formControlName="category">
-            <div *ngIf="category?.invalid && (category?.dirty || category?.touched)" class="errorMessages">
-                <div *ngIf="category?.errors?.['required']">
-                    Kategoria jest wymagana
-                </div>
-                <div *ngIf="category?.errors?.['minlength']">
-                    Kategoria musi mieć przynajmniej cztery znaki
-                </div>
-            </div>
+                <mat-label>kategoria</mat-label>
+                    <mat-select formControlName="categoryId">
+                        <mat-option *ngFor="let el of categories" [value]="el.id">{{el.name}}</mat-option>
+                    </mat-select>
+                    <div *ngIf="categoryId?.invalid && (categoryId?.dirty || categoryId?.touched)" class="errorMessages">
+                        <div *ngIf="categoryId?.errors?.['required']">
+                            Kategoria jest wymagana
+                        </div>
+                    </div>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
@@ -100,15 +101,24 @@ import { FormGroup } from "@angular/forms";
 export class AdminProductFormComponent implements OnInit {
 
     @Input() parentForm!: FormGroup
+    categories: Array<AdminCategoryNameDto> = [];
+
+    constructor(private formCategoryService: FormCategoryService) { }
 
     ngOnInit(): void {
+        this.getCategories();
+    }
+
+    getCategories() {
+        return this.formCategoryService.getCategories()
+        .subscribe(categories => this.categories = categories);
     }
 
     get name() {
         return this.parentForm.get("name");
     }
-    get category() {
-        return this.parentForm.get("category");
+    get categoryId() {
+        return this.parentForm.get("categoryId");
     }
     get description() {
         return this.parentForm.get("description");
