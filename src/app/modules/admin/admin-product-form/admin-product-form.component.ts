@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { AdminCategoryNameDto } from "./adminCategoryNameDto";
+import { AdminCategoryNameDto } from "../common/dto/adminCategoryNameDto";
 import { FormCategoryService } from "./form-category.service";
 
 @Component({
@@ -47,7 +47,7 @@ import { FormCategoryService } from "./form-category.service";
 
         <mat-form-field appearance="fill">
             <mat-label>opis</mat-label>
-            <textarea matInput rows="20" placeholder="podaj opis produktu" formControlName="description"></textarea>
+            <textarea matInput rows="10" placeholder="podaj opis produktu" formControlName="description"></textarea>
             <div *ngIf="description?.invalid && (description?.dirty || description?.touched)" class="errorMessages">
                 <div *ngIf="description?.errors?.['required']">
                     Opis jest wymagany
@@ -60,7 +60,7 @@ import { FormCategoryService } from "./form-category.service";
 
         <mat-form-field appearance="fill">
             <mat-label>Pełny opis</mat-label>
-            <textarea matInput rows="40" placeholder="Podaj pełny opis produktu" formControlName="fullDescription"></textarea>
+            <textarea matInput rows="15" placeholder="Podaj pełny opis produktu" formControlName="fullDescription"></textarea>
         </mat-form-field>
 
         <mat-form-field appearance="fill">

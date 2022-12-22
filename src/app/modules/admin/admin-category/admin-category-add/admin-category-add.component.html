@@ -1,0 +1,4 @@
+<h1>Dodaj nową kategorię</h1>
+<form fxLayout="column" [formGroup]="categoryform" (submit)="submit()">
+    <app-admin-category-form [parentForm]="categoryform"></app-admin-category-form>
+</form>
