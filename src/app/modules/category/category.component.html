@@ -1,6 +1,6 @@
-<h1>Kategoria: {{categoryProducts.category.name}}</h1>
-<p>{{categoryProducts.category.description}}</p>
-<mat-card *ngFor="let product of categoryProducts.products.content">
+<h1>Kategoria: {{categoryProductsCatName}}</h1>
+<p>{{categoryProductsCatDesc}}</p>
+<mat-card *ngFor="let product of categoryProductsProdCont">
     <div flexLayout="row">
         <div flexLayout="column" fxFlex>
             <mat-card-title><a routerLink="{{'/products/' + product.slug}}">{{product.name}}</a></mat-card-title>
@@ -23,7 +23,7 @@
     </mat-card-actions>
 </mat-card>
 <mat-paginator *ngIf="categoryProducts.products && categoryProducts.products.totalElements > 0" 
-    [length]="categoryProducts.products.totalElements"
+    [length]="categoryProductsProdElements"
     [pageSize]="10"
     [pageSizeOptions]="[10, 25, 50]"
     aria-label="Elementów na stronie"

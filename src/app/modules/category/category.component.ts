@@ -41,5 +41,12 @@ export class CategoryComponent implements OnInit, OnDestroy {
       onPageEvent(event: PageEvent) {
         this.getCategoryWithProducts(event.pageIndex, event.pageSize);
       }
+
+      get categoryProductsCategory() {return (this.categoryProducts && this.categoryProducts.category) ? this.categoryProducts.category : null}
+      get categoryProductsCatName() { return (this.categoryProductsCategory && this.categoryProductsCategory.name) ? this.categoryProductsCategory.name : null }
+      get categoryProductsCatDesc() { return (this.categoryProductsCategory && this.categoryProductsCategory.description) ? this.categoryProductsCategory.description : null }
+      get categoryProductsProducts() {return (this.categoryProducts && this.categoryProducts.products) ? this.categoryProducts.products : null}
+      get categoryProductsProdCont() {return (this.categoryProductsProducts && this.categoryProductsProducts.content) ? this.categoryProductsProducts.content : null}
+      get categoryProductsProdElements() {return (this.categoryProductsProducts && this.categoryProductsProducts.totalElements) ? this.categoryProductsProducts.totalElements : null}
     }
     
