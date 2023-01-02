@@ -45,7 +45,7 @@ export class ProductDetailsComponent implements OnInit{
         productId: this.product.id
       } as Review).subscribe(review => {
         this.reviewForm.reset,
-        this.snackBar.open('Dziękujemy za dodanie opinii', '', {duration: 1500, panelClass: "snack-bar-bg-color-ok"});
+        this.snackBar.open('Dziękujemy za dodanie opinii. Za jakiś czas pojawi się ona w serwisie.', '', {duration: 1500, panelClass: "snack-bar-bg-color-ok"});
       });
     }
   }
