@@ -8,7 +8,7 @@ import { FullpageadminModule } from './layouts/fullpageadmin/fullpageadmin.modul
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { MatPaginatorIntl } from '@angular/material/paginator';
-import { CustomPaginator } from './shared/model/custom_paginator';
+import { CustomPaginator } from './modules/common/model/custom_paginator';
 
 @NgModule({
   declarations: [
