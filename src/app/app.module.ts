@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { CustomPaginator } from './modules/common/model/custom_paginator';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { CustomPaginator } from './modules/common/model/custom_paginator';
     BrowserAnimationsModule,
     HttpClientModule
   ],
-  providers: [{ provide: MatPaginatorIntl, useValue: CustomPaginator() }],
+  providers: [CookieService, { provide: MatPaginatorIntl, useValue: CustomPaginator() }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
