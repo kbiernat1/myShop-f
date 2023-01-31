@@ -10,19 +10,20 @@
         </div>
         <div formGroupName="items">
             <div *ngFor="let item of items; let i = index">
-                <div [formGroupName]="i"  fxLayout="row" fxLayoutAlign="space-between start" class="card-row">
+                <div [formGroupName]="i" fxLayout="row" fxLayoutAlign="space-between start" class="card-row">
                     <div class="cart-col-1">
                         <a routerLink="{{'/products/' + item.value?.product?.slug}}">
                             <img *ngIf="!item.value?.product?.img" src="/assets/image-placeholder.png" width="100">
-                            <img *ngIf="item.value?.product?.img" src="{{'/api/data/productImage/' + item.value?.product?.img}}"
-                                width="100">
+                            <img *ngIf="item.value?.product?.img"
+                                src="{{'/api/data/productImage/' + item.value?.product?.img}}" width="100">
                         </a>
                     </div>
                     <div class="cart-col-2">{{item.value?.product?.name}}</div>
                     <div class="cart-col-3"><input formControlName="quantity" class="quantityInput"></div>
                     <div class="cart-col-4">{{item.value?.lineValue}}</div>
                     <div class="cart-col-5">
-                        <button mat-icon-button (click)="deleteItem(item.value?.id)"><mat-icon>delete</mat-icon></button>
+                        <button mat-icon-button
+                            (click)="deleteItem(item.value?.id)"><mat-icon>delete</mat-icon></button>
                     </div>
                 </div>
             </div>
@@ -30,12 +31,15 @@
         <div class="card-row" fxLayoutAlign="end start">
             <button mat-flat-button color="warn" (click)="submit()">zaktualizuj koszyk</button>
         </div>
-        <div>
-            <button mat-flat-button color="warn" (click)="back()">Powrót do zakupów</button>
-            </div>
         <div fxLayoutAlign="end start">
             <div class="summary"> Wartość: </div>
             <div class="summary"> <b>{{summary.summary.grossValue}}</b></div>
+        </div>
+        <div fxLayoutAlign="end start">
+            <button mat-flat-button color="primary" (click)="back()">Powrót do zakupów</button>
+        </div>
+        <div fxLayoutAlign="end start">
+            <button type="button" class="orderButton" mat-flat-button color="warn" routerLink="/order">ZAMAWIAM</button>
         </div>
     </div>
 </form>

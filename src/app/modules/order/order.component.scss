@@ -1,3 +1,9 @@
+.orderForm{
+    width: 400px;
+}
+.errorMessage{
+    color: red;
+}
 .cart-hcol-1, 
 .cart-hcol-2,
 .cart-hcol-3,
@@ -43,4 +49,10 @@
 }
 .orderButton{
     font-size: 22px;
+}
+.orderSummary{
+    font-size: 18px;
+}
+.orderSummary div{
+    margin-bottom: 12px;
 }
