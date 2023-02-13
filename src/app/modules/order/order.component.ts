@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { CartSummary } from '../common/model/cart/cartSummary';
+import { CartIconService } from '../common/service/cart-icon.service';
 import { InitData } from './model/initData';
 import { OrderDto } from './model/orderDto';
 import { OrderSummary } from './model/orderSummary';
@@ -27,7 +28,9 @@ export class OrderComponent implements OnInit {
 
   constructor(private cookieService: CookieService,
     private orderService: OrderService,
-    private formBuilder: FormBuilder) {}
+    private formBuilder: FormBuilder,
+    private cartIconService: CartIconService
+    ) {}
 
   ngOnInit(): void {
     this.checkCartEmpty();
@@ -70,6 +73,7 @@ export class OrderComponent implements OnInit {
         this.orderSummary = orderSummary;
         this.cookieService.delete("cartId");
         this.errorMessage = false;
+        this.cartIconService.cartChanged(0);
       },
       error: err => this.errorMessage = true
     })
