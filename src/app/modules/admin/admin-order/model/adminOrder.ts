@@ -5,7 +5,7 @@ export interface AdminOrder{
     id: number,
     placeDate: Date,
     orderStatus: string,
-    orderRows: Array<AdminOrderRow>
+    orderRows: Array<AdminOrderRow>,
     grossValue: number,
     firstname: string,
     lastname: string,
