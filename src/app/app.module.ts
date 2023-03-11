@@ -6,10 +6,13 @@ import { DefaultModule } from './layouts/default/default.module';
 import { FullpageModule } from './layouts/fullpage/fullpage.module';
 import { FullpageadminModule } from './layouts/fullpageadmin/fullpageadmin.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { CustomPaginator } from './modules/common/model/custom_paginator';
 import { CookieService } from 'ngx-cookie-service';
+import { FullpageadminemptyModule } from './layouts/fullpageadminempty/fullpageadminempty.module';
+import { JwtInterceptor } from './modules/common/interceptor/jwt.interceptor';
+import { AdminAuthorizeGuard } from './modules/admin/common/guard/adminAuthorizeGuard';
 
 @NgModule({
   declarations: [
@@ -21,10 +24,14 @@ import { CookieService } from 'ngx-cookie-service';
     DefaultModule,
     FullpageModule,
     FullpageadminModule,
+    FullpageadminemptyModule,
     BrowserAnimationsModule,
     HttpClientModule
   ],
-  providers: [CookieService, { provide: MatPaginatorIntl, useValue: CustomPaginator() }],
+  providers: [CookieService, 
+    { provide: MatPaginatorIntl, useValue: CustomPaginator() },
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    AdminAuthorizeGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
