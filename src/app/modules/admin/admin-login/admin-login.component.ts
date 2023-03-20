@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { JwtService } from '../../common/service/jwt.service';
 import { AdminLoginService } from './admin-login.service';
 
@@ -16,12 +17,14 @@ export class AdminLoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private adminLoginService: AdminLoginService,
-    private jwtService: JwtService) {  }
+    private jwtService: JwtService,
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
     this.formGroup = this.formBuilder.group({
       username: ['', Validators.required],
-      password: ['', Validators.required],
+      password: ['', Validators.required]
     });
   }
 
@@ -31,8 +34,12 @@ export class AdminLoginComponent implements OnInit {
         .subscribe({
           next: (response) => {
             this.loginError = false;
-            this.jwtService.setToken(response.token)
-            },
+            if(response.adminAccess){
+              this.jwtService.setToken(response.token);
+              this.jwtService.setAdminAccess(true);
+            }
+            this.router.navigate(["/admin"]);
+          },
           error: () => this.loginError = true
         })
     }
