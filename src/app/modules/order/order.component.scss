@@ -4,6 +4,10 @@
 .errorMessage{
     color: red;
 }
+.orderButton{
+    font-size: 22px;
+    width: 220px;
+}
 .cart-hcol-1, 
 .cart-hcol-2,
 .cart-hcol-3,
@@ -44,17 +48,11 @@
     padding: 11px;
     border-bottom: 1px solid #eee;
 }
-.quantityInput{
-    width: 25px;
-}
-.orderButton{
-    font-size: 22px;
-}
 .orderSummary{
     font-size: 18px;
 }
 .orderSummary div{
-    margin-bottom: 12px;
+    margin-bottom:12px;
 }
 .shipmentRadioButton{
     margin: 15px 0;
@@ -66,7 +64,7 @@
 }
 .orderTotal{
     background: white;
-    padding: 15px;
+    padding:15px;
     border-bottom: 1px solid #eee;
     font-size: 22px;
     font-weight: 500;
@@ -78,19 +76,7 @@
 .paymentNote{
     font-weight: 700;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.loginInfo{
+    font-size: 18px;
+}
 

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { CartSummary } from '../common/model/cart/cartSummary';
 import { CartIconService } from '../common/service/cart-icon.service';
+import { JwtService } from '../common/service/jwt.service';
 import { InitData } from './model/initData';
 import { OrderDto } from './model/orderDto';
 import { OrderSummary } from './model/orderSummary';
@@ -20,6 +21,7 @@ export class OrderComponent implements OnInit {
   orderSummary!: OrderSummary;
   initData!: InitData;
   errorMessage = false;
+  isLoggedIn = false;
 
   private statuses = new Map<string, string>([
     ["NEW", "nowe zamówienie"]
@@ -29,7 +31,8 @@ export class OrderComponent implements OnInit {
   constructor(private cookieService: CookieService,
     private orderService: OrderService,
     private formBuilder: FormBuilder,
-    private cartIconService: CartIconService
+    private cartIconService: CartIconService,
+    private jwtService: JwtService
     ) {}
 
   ngOnInit(): void {
@@ -46,6 +49,7 @@ export class OrderComponent implements OnInit {
       payment: ['', Validators.required]
     });
     this.getInitData();
+    this.isLoggedIn = this.jwtService.isLoggedIn();
   }
 
   checkCartEmpty() {
