@@ -13,7 +13,7 @@ export class AdminLoginComponent implements OnInit {
 
   formGroup!: FormGroup;
   loginError = false;
-
+  
   constructor(
     private formBuilder: FormBuilder,
     private adminLoginService: AdminLoginService,
@@ -22,7 +22,7 @@ export class AdminLoginComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.formGroup = this.formBuilder.group({
+    this.formGroup =this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
@@ -37,11 +37,13 @@ export class AdminLoginComponent implements OnInit {
             if(response.adminAccess){
               this.jwtService.setToken(response.token);
               this.jwtService.setAdminAccess(true);
+              this.router.navigate(["/admin"]);
+              
             }
-            this.router.navigate(["/admin"]);
           },
           error: () => this.loginError = true
         })
     }
   }
+
 }

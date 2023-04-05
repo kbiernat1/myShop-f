@@ -30,18 +30,18 @@ import { ProfileComponent } from './modules/profile/profile.component';
 const routes: Routes = [
   {
     path:'', component: DefaultComponent, children: [ 
-      {path:'', component: HomeComponent},
-      {path:'products', component: ProductComponent},
-      {path:'products/:slug', component: ProductDetailsComponent},
-      {path:'categories/:slug', component: CategoryComponent},
-      {path:'cart', component: CartComponent},
-      {path:'order', component: OrderComponent},
+      {path: '', component: HomeComponent},
+      {path: 'products', component: ProductComponent},
+      {path: 'products/:slug', component: ProductDetailsComponent},
+      {path: 'categories/:slug', component: CategoryComponent},
+      {path: 'cart', component: CartComponent},
+      {path: 'order', component: OrderComponent},
       {path: 'profile', component: ProfileComponent}
     ]
   },
   {
     path:'', component: FullpageComponent, children: [
-      {path:'login', component: LoginComponent}
+      {path: 'login', component: LoginComponent}
     ]
   },
   {

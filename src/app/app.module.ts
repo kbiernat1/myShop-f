@@ -30,7 +30,7 @@ import { AdminAuthorizeGuard } from './modules/admin/common/guard/adminAuthorize
   ],
   providers: [CookieService, 
     { provide: MatPaginatorIntl, useValue: CustomPaginator() },
-    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     AdminAuthorizeGuard],
   bootstrap: [AppComponent]
 })
