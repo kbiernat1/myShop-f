@@ -20,6 +20,7 @@ import { AdminComponent } from './modules/admin/admin.component';
 import { AdminAuthorizeGuard } from './modules/admin/common/guard/adminAuthorizeGuard';
 import { CartComponent } from './modules/cart/cart.component';
 import { CategoryComponent } from './modules/category/category.component';
+import { ProfileAuthorizeGuard } from './modules/common/guard/profileAuthorizeGuard';
 import { HomeComponent } from './modules/home/home.component';
 import { LoginComponent } from './modules/login/login.component';
 import { OrderComponent } from './modules/order/order.component';
@@ -36,7 +37,7 @@ const routes: Routes = [
       {path: 'categories/:slug', component: CategoryComponent},
       {path: 'cart', component: CartComponent},
       {path: 'order', component: OrderComponent},
-      {path: 'profile', component: ProfileComponent}
+      {path: 'profile', component: ProfileComponent, canActivate: [ProfileAuthorizeGuard]}
     ]
   },
   {
