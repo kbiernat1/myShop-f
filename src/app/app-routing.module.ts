@@ -23,6 +23,7 @@ import { CategoryComponent } from './modules/category/category.component';
 import { ProfileAuthorizeGuard } from './modules/common/guard/profileAuthorizeGuard';
 import { HomeComponent } from './modules/home/home.component';
 import { LoginComponent } from './modules/login/login.component';
+import { LostPasswordComponent } from './modules/login/lost-password/lost-password.component';
 import { OrderComponent } from './modules/order/order.component';
 import { ProductDetailsComponent } from './modules/product-details/product-details.component';
 import { ProductComponent } from './modules/product/product.component';
@@ -42,7 +43,9 @@ const routes: Routes = [
   },
   {
     path:'', component: FullpageComponent, children: [
-      {path: 'login', component: LoginComponent}
+      {path: 'login', component: LoginComponent},
+      {path: 'lostPassword', component: LostPasswordComponent},
+      {path: 'lostPassword/:hash', component: LostPasswordComponent}
     ]
   },
   {
